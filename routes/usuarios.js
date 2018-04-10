@@ -38,6 +38,6 @@ router.get('/:usuario_id', (req, res, next) => {
   });
 });
 
-//Actualiza un proyecto con la información que tenga
+//Actualiza un usuario
 
 module.exports = router;
