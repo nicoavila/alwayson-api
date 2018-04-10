@@ -47,12 +47,13 @@ router.post('/', (req, res, next) => {
   let newMilestone = {
     name: req.body.name,
     leader_id: req.body.leader_id,
+    project_id: req.body.project_id,
     due_date: req.body.due_date
   }
   models.Milestone.create(newMilestone).then((milestone) => {
     res.status(200).json({
       status: 200,
-      data: project
+      data: milestone
     });
   }, (error) => {
     return res.status(500).json({
@@ -68,6 +69,7 @@ router.put('/:milestone_id', (req, res, next) => {
   let updateFields = {
     name: req.body.name,
     leader_id: req.body.leader_id,
+    project_id: req.body.leader_id,
     due_date: req.body.due_date
   };
   let milestoneId = req.params.milestone_id
