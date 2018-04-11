@@ -5,9 +5,11 @@ var models  = require('../models');
 //Obtiene todos los hitos
 router.get('/', (req, res, next) => {
   models.Milestone.findAll({
-    include: [{
-      model: models.User,
-    }]
+    include: [
+      { model: models.User },
+      { model: models.Project },
+      { model: models.Task }
+    ]
   }).then((milestones) => {
     if (milestones.length == 0) {
       return res.status(404).json({

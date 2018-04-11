@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
   });
   Project.associate = function(models) {
     // associations can be defined here
-   
+    Project.hasMany(models.Milestone, {
+      foreignKey: 'project_id'
+    })
   };
   return Project;
 };

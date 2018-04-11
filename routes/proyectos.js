@@ -4,7 +4,11 @@ var models  = require('../models');
 
 //Obtiene los proyectos
 router.get('/', (req, res, next) => {
-  models.Project.findAll().then((projects) => {
+  models.Project.findAll({
+    include: [
+      { model: models.Milestone }
+    ]
+  }).then((projects) => {
     res.status(200).json({
       status: 200,
       data: projects

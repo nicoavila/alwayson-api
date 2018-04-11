@@ -11,6 +11,7 @@ const indexRouter = require('./routes/index');
 const usuariosRouter = require('./routes/usuarios');
 const proyectosRouter = require('./routes/proyectos');
 const hitosRouter = require('./routes/hitos');
+const tareasRouter = require('./routes/tareas');
 
 //Instancia de ExpressJS
 const app = express();
@@ -77,6 +78,7 @@ app.use('/', indexRouter);
 app.use('/usuarios', usuariosRouter);
 app.use('/proyectos', proyectosRouter);
 app.use('/hitos', hitosRouter);
+app.use('/tareas', tareasRouter);
 
 //404 Catch
 app.use(function(req, res, next) {

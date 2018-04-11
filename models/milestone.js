@@ -10,6 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Milestone.belongsTo(models.User, {
       foreignKey: 'leader_id'
+    }),
+    Milestone.belongsTo(models.Project, {
+      foreignKey: 'project_id'
+    }),
+    Milestone.hasMany(models.Task, {
+      foreignKey: 'milestone_id'
     })
   };
   return Milestone;

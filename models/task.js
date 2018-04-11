@@ -8,6 +8,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Task.associate = function(models) {
     // associations can be defined here
+    Task.belongsTo(models.Milestone, {
+      foreignKey: 'milestone_id'
+    }),
+    Task.belongsTo(models.User, {
+      foreignKey: 'user_id'
+    })
   };
   return Task;
 };
