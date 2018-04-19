@@ -5,7 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     leader_id: DataTypes.INTEGER,
     project_id: DataTypes.INTEGER,
     due_date: DataTypes.DATE
-  }, {});
+  }, {
+    freezeTableName: true,
+    tableName: 'milestones'
+  });
   Milestone.associate = function(models) {
     // associations can be defined here
     Milestone.belongsTo(models.User, {

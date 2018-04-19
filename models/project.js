@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     end_date: DataTypes.DATE,
     description: DataTypes.TEXT
   }, {
-    timestamps: true
+    timestamps: true,
+    freezeTableName: true,
+    tableName: 'projects'
   });
   Project.associate = function(models) {
     // associations can be defined here

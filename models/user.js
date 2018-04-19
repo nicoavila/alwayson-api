@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     auth0_id: DataTypes.STRING,
     active: DataTypes.TINYINT
   }, {
-    timestamps: true
+    timestamps: true,
+    freezeTableName: true,
+    tableName: 'users'
   });
   User.associate = function(models) {
     // associations can be defined here
