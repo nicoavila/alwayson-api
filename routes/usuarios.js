@@ -1,6 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var models  = require('../models');
+const express = require('express');
+const router = express.Router();
+const models  = require('../models');
+const dotenv = require('dotenv').config();
+const request = require('request');
 
 //Obtiene los usuarios
 router.get('/', (req, res, next) => {
@@ -38,6 +40,88 @@ router.get('/:usuario_id', (req, res, next) => {
   });
 });
 
-//Actualiza un usuario
+//Obtiene la información de Auth0 de un usuario
+router.post('/auth0', (req, res, next) => {
+  if (req.body.auth0_user_id == undefined) {
+    return res.json(400,{
+      status: 400,
+      message: 'Debe proveer un auth0_user_id'
+    });
+  }
+
+  auth0Authenticate().then((auth0Token) => {
+    if (auth0Token) {
+      auth0UserInfo(auth0Token, req.body.auth0_user_id).then((user) => {
+        if (Object.keys(user).length > 0 && user.status == 200) {
+          return res.json(200,{
+            status: 200,
+            data: user.body,
+            message: 'Usuario encontrado en Auth0'
+          });  
+        } else {
+          return res.json(user.status,{
+            status: user.status,
+            message: 'Ocurrió un error al consultar la información del usuario en Auth0'
+          });
+        }
+      });
+    } else {
+      return res.json(500,{
+        status: 500,
+        message: 'No fue posible generar un token de autenticación en Auth0'
+      });
+    }
+  });
+});
+
+function auth0Authenticate() {
+  //Obtiene un token para consultar al Management API
+  let options = {
+    method: 'POST',
+    url: process.env.AUTH0_URL + 'oauth/token',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: {
+      grant_type: 'client_credentials',
+      client_id: process.env.AUTH0_MANAGEMENT_CLIENTID,
+      client_secret: process.env.AUTH0_MANAGEMENT_CLIENTSECRET,
+      audience: process.env.AUTH0_URL + 'api/v2/'
+    },
+    json: true
+  };
+
+  return new Promise((resolve, reject) => {
+    request(options, (err, res, body) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(body.access_token);
+    });
+  });
+}
+
+function auth0UserInfo(access_token, user_id) {
+  let options = {
+    method: 'GET',
+    url: process.env.AUTH0_URL + 'api/v2/users/' + user_id,
+    headers: {
+      'Authorization': 'Bearer ' + access_token
+    },
+    json: true
+  };
+  return new Promise((resolve, reject) => {
+    request(options, (err, res, body) => {
+      if (err) {
+        reject(err);
+      }
+      let response = {
+        'status': res.statusCode,
+        'body': body
+      }
+      resolve(response);
+    });
+  });
+}
 
 module.exports = router;

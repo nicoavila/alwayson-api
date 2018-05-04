@@ -1,7 +1,7 @@
-# AlwaysOn Project Management API
+# AlwaysOn Project Management - API
 
 ## Descripción
-Proyecto construído en NodeJS utilizando el Framework ExpressJS y ORM Sequelize. Permite levantar una **API REST** para gestionar la base de datos MySQL utilizada en la *Capacitación Angular*
+Proyecto construído en [Node](https://nodejs.org/en/) utilizando el Framework [ExpressJS](http://expressjs.com/) y ORM [Sequelize](http://docs.sequelizejs.com/). Permite levantar una **API RESTful** para gestionar la base de datos MySQL utilizada en la *Capacitación Angular*
 
 ## Descripción Técnica
 
