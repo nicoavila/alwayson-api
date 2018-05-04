@@ -1,0 +1,794 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2018-05-04T18:33:55.691Z",
+	"__export_source": "insomnia.desktop.app:v5.16.1",
+	"resources": [
+		{
+			"_id": "wrk_7cf320594c5945478be83ad49df84910",
+			"created": 1522751806812,
+			"description": "",
+			"modified": 1522751806812,
+			"name": "AlwaysOn API",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_ef1ed3da63464817bac537313d76bcaa",
+			"color": null,
+			"created": 1522751806916,
+			"data": {
+				"baseuRL": "http://api.nicoavila.cl/",
+				"clientID": "x568hv1fgFUsSilzptJfCTbNfT0rv4YU",
+				"password": "",
+				"username": "nicolasavila.a@gmail.com"
+			},
+			"isPrivate": false,
+			"modified": 1525435065261,
+			"name": "New Environment",
+			"parentId": "wrk_7cf320594c5945478be83ad49df84910",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_d5ce223301104d8bb6600176cb7bc1cc",
+			"cookies": [],
+			"created": 1522751806921,
+			"modified": 1522751806921,
+			"name": "Default Jar",
+			"parentId": "wrk_7cf320594c5945478be83ad49df84910",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_897902efd48c42818d76312df57ff185",
+			"created": 1523356855999,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1523359596363.5,
+			"modified": 1523359628465,
+			"name": "Proyectos",
+			"parentId": "wrk_7cf320594c5945478be83ad49df84910",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_c13be1f9e0da4420b4f7c7ffb33347fb",
+			"created": 1523359583617,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1523359583617,
+			"modified": 1523359583617,
+			"name": "Usuarios",
+			"parentId": "wrk_7cf320594c5945478be83ad49df84910",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_14f9b5c0eb3e4e25878d8b6af14a0c7c",
+			"created": 1523359589161,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1523359596376,
+			"modified": 1523359616869,
+			"name": "Hitos",
+			"parentId": "wrk_7cf320594c5945478be83ad49df84910",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_0bb63397811f47b99f9a5aed04218f8d",
+			"created": 1523359596351,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1523359596351,
+			"modified": 1523359596351,
+			"name": "Tareas",
+			"parentId": "wrk_7cf320594c5945478be83ad49df84910",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_c58bf0f126fa4a248c4f89217bb6172f",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"grant_type\": \"http://auth0.com/oauth/grant-type/password-realm\",\n\t\"realm\": \"Username-Password-Authentication\",\n\t\"username\": \"{{ username  }}\",\n\t\"password\": \"{{ password  }}\", \n\t\"scope\": \"openid\", \n\t\"client_id\": \"{{ clientID }}\"\n}"
+			},
+			"created": 1522753156703,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_2c8be9a89da94169ace08f45118c18e6",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1525402563014,
+			"method": "POST",
+			"modified": 1525402664835,
+			"name": "Token Autorizacion",
+			"parameters": [],
+			"parentId": "wrk_7cf320594c5945478be83ad49df84910",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "https://navila.auth0.com/oauth/token",
+			"_type": "request"
+		},
+		{
+			"_id": "req_aa9e2f0edd564ead89b1edd650c9dae1",
+			"authentication": {
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"id": "pair_a949c34329c14c12ac2328664f202776",
+						"name": "auth0_user_id",
+						"value": "auth0|5ac36054c85e20778efd0879"
+					}
+				]
+			},
+			"created": 1525402562964,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_bc9b565c67b04f58b206aaa59629765b",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1525402562964,
+			"method": "POST",
+			"modified": 1525402740813,
+			"name": "Obtiene Info Auth0",
+			"parameters": [],
+			"parentId": "wrk_7cf320594c5945478be83ad49df84910",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}usuarios/auth0",
+			"_type": "request"
+		},
+		{
+			"_id": "req_68e70c6f110544c4ae64b88f1897875a",
+			"authentication": {
+				"disabled": false,
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1522751854876,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1523055006351.5,
+			"method": "GET",
+			"modified": 1523357224472,
+			"name": "Listar Proyectos",
+			"parameters": [],
+			"parentId": "fld_897902efd48c42818d76312df57ff185",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}proyectos",
+			"_type": "request"
+		},
+		{
+			"_id": "req_1915eeac7c1b47d38596582055e846d2",
+			"authentication": {
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"disabled": false,
+						"id": "pair_52e1ea26175f4820bbdb391303fc8bef",
+						"name": "name",
+						"value": "Nuevo proyecto de prueba"
+					},
+					{
+						"id": "pair_e0585dafbc0c4783bea677e4e0660a19",
+						"name": "start_date",
+						"value": "2018-04-03 07:41:57"
+					},
+					{
+						"id": "pair_02d1457e0cf344db8fd975b6c0ffea95",
+						"name": "end_date",
+						"value": "2018-06-03 07:41:57"
+					},
+					{
+						"id": "pair_1806a656682849a1b3327b2d391e3304",
+						"name": "description",
+						"value": "Este es un nuevo proyecto de prueba"
+					}
+				]
+			},
+			"created": 1523357101063,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_189477e921b74f119fa8ccb1c783b103",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523055006301.5,
+			"method": "POST",
+			"modified": 1523360632913,
+			"name": "Nuevo Proyecto",
+			"parameters": [],
+			"parentId": "fld_897902efd48c42818d76312df57ff185",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}proyectos",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c70f4d5947834703bce6f2f6b6589753",
+			"authentication": {
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"disabled": false,
+						"id": "pair_52e1ea26175f4820bbdb391303fc8bef",
+						"name": "name",
+						"value": "Otro proyecto de prueba"
+					},
+					{
+						"id": "pair_e0585dafbc0c4783bea677e4e0660a19",
+						"name": "start_date",
+						"value": "2018-04-03 07:41:57"
+					},
+					{
+						"id": "pair_02d1457e0cf344db8fd975b6c0ffea95",
+						"name": "end_date",
+						"value": "2018-06-03 07:41:57"
+					},
+					{
+						"id": "pair_1806a656682849a1b3327b2d391e3304",
+						"name": "description",
+						"value": "Este es un nuevo proyecto"
+					}
+				]
+			},
+			"created": 1523357768602,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_189477e921b74f119fa8ccb1c783b103",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1522904081502.25,
+			"method": "PUT",
+			"modified": 1523360871148,
+			"name": "Editar Proyecto",
+			"parameters": [],
+			"parentId": "fld_897902efd48c42818d76312df57ff185",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}proyectos/1",
+			"_type": "request"
+		},
+		{
+			"_id": "req_79ca197aa66540bfb76d9d2e890dea5c",
+			"authentication": {
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1523358018717,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_189477e921b74f119fa8ccb1c783b103",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1522828619102.625,
+			"method": "DELETE",
+			"modified": 1523359273414,
+			"name": "Eliminar Proyecto",
+			"parameters": [],
+			"parentId": "fld_897902efd48c42818d76312df57ff185",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}proyectos/4",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b96aa16b9ef2459bbd71fd72923cbcac",
+			"authentication": {
+				"disabled": false,
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1523359436263,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1523055006326.5,
+			"method": "GET",
+			"modified": 1523412492932,
+			"name": "Obtiene Proyecto",
+			"parameters": [],
+			"parentId": "fld_897902efd48c42818d76312df57ff185",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}proyectos/1",
+			"_type": "request"
+		},
+		{
+			"_id": "req_8e908eb232194616801a93150489d2f4",
+			"authentication": {
+				"disabled": false,
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1522781951707,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1520920717403,
+			"method": "GET",
+			"modified": 1523359601912,
+			"name": "Listar Usuarios",
+			"parameters": [],
+			"parentId": "fld_c13be1f9e0da4420b4f7c7ffb33347fb",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}usuarios",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b2020d3749a2470baa0575def5423cdf",
+			"authentication": {
+				"disabled": false,
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1523361001579,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1520920717378,
+			"method": "GET",
+			"modified": 1523361027712,
+			"name": "Obtiene Usuario",
+			"parameters": [],
+			"parentId": "fld_c13be1f9e0da4420b4f7c7ffb33347fb",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}usuarios/1",
+			"_type": "request"
+		},
+		{
+			"_id": "req_e167ecb0d905446e8f08fd8316f65070",
+			"authentication": {
+				"disabled": false,
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1522784057363,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1520920717353,
+			"method": "GET",
+			"modified": 1523359606958,
+			"name": "Listar Hitos",
+			"parameters": [],
+			"parentId": "fld_14f9b5c0eb3e4e25878d8b6af14a0c7c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}hitos",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7e38000001534cdeaf3115efd01e450b",
+			"authentication": {
+				"disabled": false,
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1523360551744,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1520920717303,
+			"method": "GET",
+			"modified": 1523360575872,
+			"name": "Obtiene Hito",
+			"parameters": [],
+			"parentId": "fld_14f9b5c0eb3e4e25878d8b6af14a0c7c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}hitos/1",
+			"_type": "request"
+		},
+		{
+			"_id": "req_df98c22a4d0f496a8b1e126e99de7403",
+			"authentication": {
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"disabled": false,
+						"id": "pair_52e1ea26175f4820bbdb391303fc8bef",
+						"name": "name",
+						"value": "Nuevo Hito"
+					},
+					{
+						"id": "pair_e0585dafbc0c4783bea677e4e0660a19",
+						"name": "leader_id",
+						"value": "1"
+					},
+					{
+						"id": "pair_f73dc8947f674546b73ea31d75b69c70",
+						"name": "project_id",
+						"value": "1"
+					},
+					{
+						"id": "pair_02d1457e0cf344db8fd975b6c0ffea95",
+						"name": "due_date",
+						"value": "2018-06-03 07:41:57"
+					}
+				]
+			},
+			"created": 1523360583238,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_189477e921b74f119fa8ccb1c783b103",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1520920717253,
+			"method": "POST",
+			"modified": 1523360671683,
+			"name": "Nuevo Hito",
+			"parameters": [],
+			"parentId": "fld_14f9b5c0eb3e4e25878d8b6af14a0c7c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}hitos",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7537c9518bc14104b7ffae7e8757a387",
+			"authentication": {
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"disabled": false,
+						"id": "pair_52e1ea26175f4820bbdb391303fc8bef",
+						"name": "name",
+						"value": "Otro Hito"
+					},
+					{
+						"id": "pair_e0585dafbc0c4783bea677e4e0660a19",
+						"name": "leader_id",
+						"value": "1"
+					},
+					{
+						"id": "pair_02d1457e0cf344db8fd975b6c0ffea95",
+						"name": "project_id",
+						"value": "1"
+					},
+					{
+						"id": "pair_1806a656682849a1b3327b2d391e3304",
+						"name": "due_date",
+						"value": "2018-06-03 07:41:57"
+					}
+				]
+			},
+			"created": 1523360803025,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_189477e921b74f119fa8ccb1c783b103",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1520920717203,
+			"method": "PUT",
+			"modified": 1523360853307,
+			"name": "Editar Hito",
+			"parameters": [],
+			"parentId": "fld_14f9b5c0eb3e4e25878d8b6af14a0c7c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}hitos/4",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a82b13cb82664bd5a85db1fbbacc19ae",
+			"authentication": {
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1523360904546,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_189477e921b74f119fa8ccb1c783b103",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1520920717153,
+			"method": "DELETE",
+			"modified": 1523360918029,
+			"name": "Eliminar Hito",
+			"parameters": [],
+			"parentId": "fld_14f9b5c0eb3e4e25878d8b6af14a0c7c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}hitos/3",
+			"_type": "request"
+		},
+		{
+			"_id": "req_24de369d11424e348124eb9cde4b4c37",
+			"authentication": {
+				"disabled": false,
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1523411902259,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1523359589984,
+			"method": "GET",
+			"modified": 1523411918072,
+			"name": "Listar Tareas",
+			"parameters": [],
+			"parentId": "fld_0bb63397811f47b99f9a5aed04218f8d",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}tareas",
+			"_type": "request"
+		},
+		{
+			"_id": "req_42823abeef1b48929a610d54f36a8994",
+			"authentication": {
+				"disabled": false,
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1523412943300,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1523207298167.75,
+			"method": "GET",
+			"modified": 1523412970470,
+			"name": "Obtiene Tarea",
+			"parameters": [],
+			"parentId": "fld_0bb63397811f47b99f9a5aed04218f8d",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}tareas/1",
+			"_type": "request"
+		},
+		{
+			"_id": "req_27dfb242418e41b5a7f42511ad5a303f",
+			"authentication": {
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"disabled": false,
+						"id": "pair_52e1ea26175f4820bbdb391303fc8bef",
+						"name": "title",
+						"value": "Nueva Tarea"
+					},
+					{
+						"id": "pair_e0585dafbc0c4783bea677e4e0660a19",
+						"name": "milestone_id",
+						"value": "1"
+					},
+					{
+						"id": "pair_f73dc8947f674546b73ea31d75b69c70",
+						"name": "description",
+						"value": "Descripción de prueba"
+					},
+					{
+						"id": "pair_02d1457e0cf344db8fd975b6c0ffea95",
+						"name": "user_id",
+						"value": "1"
+					}
+				]
+			},
+			"created": 1523413097318,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_189477e921b74f119fa8ccb1c783b103",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523207298117.75,
+			"method": "POST",
+			"modified": 1523413201123,
+			"name": "Nueva Tarea",
+			"parameters": [],
+			"parentId": "fld_0bb63397811f47b99f9a5aed04218f8d",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}tareas",
+			"_type": "request"
+		},
+		{
+			"_id": "req_94286fd3b45441f8a3d6eee9885bce28",
+			"authentication": {
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"disabled": false,
+						"id": "pair_52e1ea26175f4820bbdb391303fc8bef",
+						"name": "title",
+						"value": "Nueva Tareaaaa"
+					},
+					{
+						"id": "pair_e0585dafbc0c4783bea677e4e0660a19",
+						"name": "milestone_id",
+						"value": "1"
+					},
+					{
+						"id": "pair_f73dc8947f674546b73ea31d75b69c70",
+						"name": "description",
+						"value": "Descripción de prueba"
+					},
+					{
+						"id": "pair_02d1457e0cf344db8fd975b6c0ffea95",
+						"name": "user_id",
+						"value": "1"
+					}
+				]
+			},
+			"created": 1523413409966,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_189477e921b74f119fa8ccb1c783b103",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523131152234.625,
+			"method": "PUT",
+			"modified": 1523413437142,
+			"name": "Editar Tarea",
+			"parameters": [],
+			"parentId": "fld_0bb63397811f47b99f9a5aed04218f8d",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}tareas/1",
+			"_type": "request"
+		},
+		{
+			"_id": "req_27e41470d1b446c1a7681859a11cc7de",
+			"authentication": {
+				"token": "{% response 'body', 'req_c58bf0f126fa4a248c4f89217bb6172f', '$.id_token' %}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1523413446974,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_189477e921b74f119fa8ccb1c783b103",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1523093079293.0625,
+			"method": "DELETE",
+			"modified": 1523413468024,
+			"name": "Eliminar Tarea",
+			"parameters": [],
+			"parentId": "fld_0bb63397811f47b99f9a5aed04218f8d",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ baseuRL  }}tareas/2",
+			"_type": "request"
+		}
+	]
+}
